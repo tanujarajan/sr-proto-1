@@ -3,6 +3,7 @@ import { SidebarTrigger } from "@/components/ui/sidebar";
 import { Switch } from "@/components/ui/switch";
 import { SessionReplayTable } from "@/components/SessionReplayTable";
 import { InterestingReplaysSection } from "@/components/InterestingReplaysSection";
+import { FilterBar } from "@/components/FilterBar";
 import { SessionReplay } from "@/types/session-replay";
 
 interface SessionReplayDashboardProps {
@@ -36,6 +37,11 @@ export function SessionReplayDashboard({ onReplaySelect }: SessionReplayDashboar
           {/* Interesting Replays Section */}
           <div className="p-6 border-b border-border">
             <InterestingReplaysSection onReplaySelect={onReplaySelect} />
+          </div>
+
+          {/* Filter Bar */}
+          <div className="p-4 border-b border-border">
+            <FilterBar />
           </div>
 
           {/* Session Replay Table */}
