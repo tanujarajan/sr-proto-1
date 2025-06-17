@@ -17,10 +17,14 @@ export function FilterBar() {
       {timePeriods.map((period) => (
         <Button
           key={period.value}
-          variant={activeTimePeriod === period.value ? "default" : "outline"}
+          variant="outline"
           size="sm"
           onClick={() => setActiveTimePeriod(period.value)}
-          className="h-8 px-3"
+          className={`h-8 px-3 ${
+            activeTimePeriod === period.value 
+              ? "bg-blue-600 text-white border-blue-600 hover:bg-blue-700" 
+              : ""
+          }`}
         >
           {period.label}
         </Button>
