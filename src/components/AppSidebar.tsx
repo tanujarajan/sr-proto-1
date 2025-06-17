@@ -16,8 +16,6 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarHeader,
-  SidebarTrigger,
 } from "@/components/ui/sidebar";
 
 const navigationItems = [
@@ -70,15 +68,6 @@ const bottomItems = [
 export function AppSidebar() {
   return (
     <Sidebar collapsible="icon" className="border-r border-border">
-      <SidebarHeader className="p-4">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-primary rounded-md flex items-center justify-center">
-            <span className="text-primary-foreground font-bold text-sm">A</span>
-          </div>
-          <span className="font-semibold text-lg">Amplitude</span>
-        </div>
-      </SidebarHeader>
-      
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupContent>
