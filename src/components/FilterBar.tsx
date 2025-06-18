@@ -1,6 +1,13 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { DateRangeFilter } from "@/components/DateRangeFilter";
+import { Plus } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 type TimePeriod = "1d" | "7d" | "30d";
 
@@ -31,6 +38,26 @@ export function FilterBar() {
           {period.label}
         </Button>
       ))}
+      
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button
+            variant="outline"
+            size="sm"
+            className="h-8 px-3 hover:bg-blue-100 hover:text-blue-900"
+          >
+            <Plus className="h-4 w-4 mr-1" />
+            Add Filter
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="start" className="w-48">
+          <DropdownMenuItem>Event</DropdownMenuItem>
+          <DropdownMenuItem>Event Property</DropdownMenuItem>
+          <DropdownMenuItem>Cohort</DropdownMenuItem>
+          <DropdownMenuItem>Session Duration</DropdownMenuItem>
+          <DropdownMenuItem>User Property</DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
     </div>
   );
 }
