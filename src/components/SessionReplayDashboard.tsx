@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { SessionReplayTable } from "@/components/SessionReplayTable";
-import { InterestingReplaysSection } from "@/components/InterestingReplaysSection";
 import { FilterBar } from "@/components/FilterBar";
 import { SessionReplay } from "@/types/session-replay";
 
@@ -27,11 +26,6 @@ export function SessionReplayDashboard({ onReplaySelect }: SessionReplayDashboar
       {/* Content */}
       <div className="flex-1 overflow-hidden">
         <div className="h-full flex flex-col">
-          {/* Interesting Replays Section */}
-          <div className="p-6 border-b border-border">
-            <InterestingReplaysSection onReplaySelect={onReplaySelect} />
-          </div>
-
           {/* Filter Bar */}
           <div className="p-4 border-b border-border">
             <FilterBar />
