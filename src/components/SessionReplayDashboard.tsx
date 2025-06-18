@@ -26,18 +26,20 @@ export function SessionReplayDashboard({ onReplaySelect }: SessionReplayDashboar
       {/* Content */}
       <div className="flex-1 overflow-hidden">
         <div className="h-full flex flex-col">
-          {/* Filter Bar */}
-          <div className="p-4 border-b border-border">
-            <FilterBar />
-          </div>
-
-          {/* Session Replay Table */}
+          {/* Session Replay Table with integrated Filter Bar */}
           <div className="flex-1 overflow-hidden">
-           <SessionReplayTable 
-              showLiveReplays={showLiveReplays}
-              onReplaySelect={onReplaySelect}
-              onShowLiveReplaysChange={setShowLiveReplays}
-            />
+            <div className="h-full flex flex-col">
+              {/* Filter Bar - directly above table */}
+              <div className="px-6 py-3 border-b border-border bg-muted/50">
+                <FilterBar />
+              </div>
+              
+              <SessionReplayTable 
+                showLiveReplays={showLiveReplays}
+                onReplaySelect={onReplaySelect}
+                onShowLiveReplaysChange={setShowLiveReplays}
+              />
+            </div>
           </div>
         </div>
       </div>

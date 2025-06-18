@@ -22,23 +22,6 @@ export function FilterBar() {
 
   return (
     <div className="flex items-center gap-2">
-      <DateRangeFilter />
-      {timePeriods.map((period) => (
-        <Button
-          key={period.value}
-          variant="outline"
-          size="sm"
-          onClick={() => setActiveTimePeriod(period.value)}
-          className={`h-8 px-3 ${
-            activeTimePeriod === period.value 
-              ? "bg-blue-600 text-white border-blue-600 hover:bg-blue-700 hover:text-white" 
-              : "hover:bg-blue-100 hover:text-blue-900"
-          }`}
-        >
-          {period.label}
-        </Button>
-      ))}
-      
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button
@@ -58,6 +41,23 @@ export function FilterBar() {
           <DropdownMenuItem>User Property</DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
+      
+      <DateRangeFilter />
+      {timePeriods.map((period) => (
+        <Button
+          key={period.value}
+          variant="outline"
+          size="sm"
+          onClick={() => setActiveTimePeriod(period.value)}
+          className={`h-8 px-3 ${
+            activeTimePeriod === period.value 
+              ? "bg-blue-600 text-white border-blue-600 hover:bg-blue-700 hover:text-white" 
+              : "hover:bg-blue-100 hover:text-blue-900"
+          }`}
+        >
+          {period.label}
+        </Button>
+      ))}
     </div>
   );
 }
