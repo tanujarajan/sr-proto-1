@@ -1,6 +1,7 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { X } from "lucide-react";
+import { ChartContainer, ChartTooltip, ChartTooltipContent, ChartLegend, ChartLegendContent } from "@/components/ui/chart";
+import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer } from "recharts";
+import { generateSessionCoverageData } from "@/utils/sessionCoverageData";
 
 interface SessionReplayCoverageModalProps {
   open: boolean;
@@ -8,6 +9,19 @@ interface SessionReplayCoverageModalProps {
 }
 
 export function SessionReplayCoverageModal({ open, onClose }: SessionReplayCoverageModalProps) {
+  const chartData = generateSessionCoverageData();
+  
+  const chartConfig = {
+    capturedReplays: {
+      label: "Replays Captured",
+      color: "hsl(var(--chart-1))",
+    },
+    remainingSessions: {
+      label: "User Sessions", 
+      color: "hsl(var(--chart-2))",
+    },
+  };
+
   return (
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent className="max-w-4xl">
@@ -37,9 +51,43 @@ export function SessionReplayCoverageModal({ open, onClose }: SessionReplayCover
           </p>
         </div>
 
-        {/* Placeholder for chart - will be added in Phase 2 */}
-        <div className="mt-8 h-64 bg-muted rounded-lg flex items-center justify-center">
-          <p className="text-muted-foreground">Chart will be added in Phase 2</p>
+        {/* Chart */}
+        <div className="mt-8">
+          <ChartContainer config={chartConfig} className="h-80 w-full">
+            <BarChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+              <XAxis 
+                dataKey="month" 
+                tickLine={false}
+                axisLine={false}
+                className="text-xs fill-muted-foreground"
+              />
+              <YAxis 
+                tickLine={false}
+                axisLine={false}
+                className="text-xs fill-muted-foreground"
+                tickFormatter={(value) => `${Math.round(value / 1000000)}M`}
+              />
+              <ChartTooltip 
+                content={
+                  <ChartTooltipContent 
+                    formatter={(value, name) => [
+                      `${Math.round(Number(value) / 1000000 * 10) / 10}M`,
+                      chartConfig[name as keyof typeof chartConfig]?.label || name
+                    ]}
+                  />
+                }
+              />
+              <ChartLegend content={<ChartLegendContent />} />
+              {/* Bottom segment: Replays Captured */}
+              <Bar dataKey="capturedReplays" stackId="sessions" fill="var(--color-capturedReplays)" />
+              {/* Top segment: User Sessions (remaining sessions) */}
+              <Bar 
+                dataKey="remainingSessions" 
+                stackId="sessions" 
+                fill="var(--color-remainingSessions)"
+              />
+            </BarChart>
+          </ChartContainer>
         </div>
       </DialogContent>
     </Dialog>
