@@ -30,7 +30,7 @@ export function SessionReplayDashboard({ onReplaySelect }: SessionReplayDashboar
           <div className="flex-1 overflow-hidden">
             <div className="h-full flex flex-col">
               {/* Filter Bar - directly above table */}
-              <div className="px-6 pt-3 pb-6 border-b border-border bg-background">
+              <div className="px-6 pt-3 pb-7 border-b border-border bg-background">
                 <FilterBar />
               </div>
               
