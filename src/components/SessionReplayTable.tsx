@@ -14,6 +14,8 @@ interface SessionReplayTableProps {
 export function SessionReplayTable({ showLiveReplays, onReplaySelect, onShowLiveReplaysChange }: SessionReplayTableProps) {
   const [replays, setReplays] = useState<SessionReplay[]>([]);
   const [loading, setLoading] = useState(false);
+  
+  console.log("SessionReplayTable rendered - toggle should be in table header, showLiveReplays:", showLiveReplays);
 
   useEffect(() => {
     // Initial load

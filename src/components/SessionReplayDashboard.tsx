@@ -11,6 +11,8 @@ interface SessionReplayDashboardProps {
 
 export function SessionReplayDashboard({ onReplaySelect }: SessionReplayDashboardProps) {
   const [showLiveReplays, setShowLiveReplays] = useState(true);
+  
+  console.log("SessionReplayDashboard rendered - toggle should NOT be in header");
 
   return (
     <div className="flex flex-col h-screen">
