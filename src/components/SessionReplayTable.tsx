@@ -80,7 +80,7 @@ export function SessionReplayTable({ showLiveReplays, onReplaySelect, onShowLive
         <div className="col-span-2">
           Country
         </div>
-        <div className="col-span-3 flex items-center justify-end gap-2">
+        <div className="col-span-3 flex items-center justify-center gap-2 pr-4">
           <span className="text-sm text-muted-foreground">Show Live Replays</span>
           <Switch 
             checked={showLiveReplays} 

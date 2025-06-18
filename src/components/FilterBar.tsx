@@ -21,43 +21,49 @@ export function FilterBar() {
   ];
 
   return (
-    <div className="flex items-center gap-2">
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
+    <div className="flex items-center justify-between">
+      {/* Left side - Add Filter */}
+      <div className="flex items-center">
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button
+              variant="outline"
+              size="sm"
+              className="h-8 px-3 hover:bg-blue-100 hover:text-blue-900"
+            >
+              <Plus className="h-4 w-4 mr-1" />
+              Add Filter
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="start" className="w-48">
+            <DropdownMenuItem>Event</DropdownMenuItem>
+            <DropdownMenuItem>Event Property</DropdownMenuItem>
+            <DropdownMenuItem>Cohort</DropdownMenuItem>
+            <DropdownMenuItem>Session Duration</DropdownMenuItem>
+            <DropdownMenuItem>User Property</DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
+
+      {/* Right side - Date filters and time periods */}
+      <div className="flex items-center gap-2">
+        <DateRangeFilter />
+        {timePeriods.map((period) => (
           <Button
+            key={period.value}
             variant="outline"
             size="sm"
-            className="h-8 px-3 hover:bg-blue-100 hover:text-blue-900"
+            onClick={() => setActiveTimePeriod(period.value)}
+            className={`h-8 px-3 ${
+              activeTimePeriod === period.value 
+                ? "bg-blue-600 text-white border-blue-600 hover:bg-blue-700 hover:text-white" 
+                : "hover:bg-blue-100 hover:text-blue-900"
+            }`}
           >
-            <Plus className="h-4 w-4 mr-1" />
-            Add Filter
+            {period.label}
           </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="start" className="w-48">
-          <DropdownMenuItem>Event</DropdownMenuItem>
-          <DropdownMenuItem>Event Property</DropdownMenuItem>
-          <DropdownMenuItem>Cohort</DropdownMenuItem>
-          <DropdownMenuItem>Session Duration</DropdownMenuItem>
-          <DropdownMenuItem>User Property</DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
-      
-      <DateRangeFilter />
-      {timePeriods.map((period) => (
-        <Button
-          key={period.value}
-          variant="outline"
-          size="sm"
-          onClick={() => setActiveTimePeriod(period.value)}
-          className={`h-8 px-3 ${
-            activeTimePeriod === period.value 
-              ? "bg-blue-600 text-white border-blue-600 hover:bg-blue-700 hover:text-white" 
-              : "hover:bg-blue-100 hover:text-blue-900"
-          }`}
-        >
-          {period.label}
-        </Button>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }
