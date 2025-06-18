@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Info } from "lucide-react";
 import {
   Tooltip,
@@ -5,11 +6,13 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { SessionReplayCoverageModal } from "@/components/SessionReplayCoverageModal";
 
 export function SessionReplayCoverageTooltip() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const handleClick = () => {
-    // Placeholder for modal opening functionality
-    console.log("Session coverage tooltip clicked - modal will open here");
+    setIsModalOpen(true);
   };
 
   return (
@@ -32,6 +35,11 @@ export function SessionReplayCoverageTooltip() {
           </TooltipContent>
         </Tooltip>
       </div>
+      
+      <SessionReplayCoverageModal 
+        open={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
     </TooltipProvider>
   );
 }
