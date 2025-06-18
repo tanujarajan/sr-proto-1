@@ -1,6 +1,6 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { ChartContainer, ChartTooltip, ChartTooltipContent, ChartLegend, ChartLegendContent } from "@/components/ui/chart";
-import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer } from "recharts";
+import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, ReferenceLine } from "recharts";
 import { generateSessionCoverageData } from "@/utils/sessionCoverageData";
 
 interface SessionReplayCoverageModalProps {
@@ -14,11 +14,11 @@ export function SessionReplayCoverageModal({ open, onClose }: SessionReplayCover
   const chartConfig = {
     capturedReplays: {
       label: "Replays Captured",
-      color: "hsl(var(--chart-1))",
+      color: "hsl(217, 91%, 60%)", // Blue
     },
     remainingSessions: {
       label: "User Sessions", 
-      color: "hsl(var(--chart-2))",
+      color: "hsl(142, 69%, 58%)", // Green
     },
   };
 
@@ -68,16 +68,52 @@ export function SessionReplayCoverageModal({ open, onClose }: SessionReplayCover
                 tickFormatter={(value) => `${Math.round(value / 1000000)}M`}
               />
               <ChartTooltip 
-                content={
-                  <ChartTooltipContent 
-                    formatter={(value, name) => [
-                      `${Math.round(Number(value) / 1000000 * 10) / 10}M`,
-                      chartConfig[name as keyof typeof chartConfig]?.label || name
-                    ]}
-                  />
-                }
+                content={({ active, payload, label }) => {
+                  if (!active || !payload?.length) return null;
+                  
+                  const data = payload[0].payload;
+                  
+                  return (
+                    <div className="rounded-lg border border-border/50 bg-background px-3 py-2 text-xs shadow-xl">
+                      <div className="font-medium mb-2">{label}</div>
+                      <div className="space-y-1">
+                        <div className="flex items-center justify-between gap-4">
+                          <div className="flex items-center gap-2">
+                            <div className="w-2 h-2 rounded-sm bg-[hsl(142,69%,58%)]"></div>
+                            <span className="text-muted-foreground">User Sessions</span>
+                          </div>
+                          <span className="font-mono font-medium">
+                            {Math.round(data.totalSessions / 1000000 * 10) / 10}M
+                          </span>
+                        </div>
+                        <div className="flex items-center justify-between gap-4">
+                          <div className="flex items-center gap-2">
+                            <div className="w-2 h-2 rounded-sm bg-[hsl(217,91%,60%)]"></div>
+                            <span className="text-muted-foreground">Replays Captured</span>
+                          </div>
+                          <span className="font-mono font-medium">
+                            {Math.round(data.capturedReplays / 1000000 * 10) / 10}M
+                          </span>
+                        </div>
+                        <div className="flex items-center justify-between gap-4">
+                          <div className="flex items-center gap-2">
+                            <div className="w-2 h-2 rounded-sm bg-muted"></div>
+                            <span className="text-muted-foreground">Replay Quota Used</span>
+                          </div>
+                          <span className="font-mono font-medium">{data.quotaUsed}%</span>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                }}
               />
               <ChartLegend content={<ChartLegendContent />} />
+              <ReferenceLine 
+                y={2000000} 
+                stroke="hsl(var(--muted-foreground))" 
+                strokeDasharray="8 8"
+                strokeWidth={1}
+              />
               {/* Bottom segment: Replays Captured */}
               <Bar dataKey="capturedReplays" stackId="sessions" fill="var(--color-capturedReplays)" />
               {/* Top segment: User Sessions (remaining sessions) */}

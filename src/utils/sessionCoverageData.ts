@@ -3,6 +3,7 @@ export interface SessionCoverageData {
   totalSessions: number;
   capturedReplays: number;
   remainingSessions: number;
+  quotaUsed: number; // Percentage of 2M quota used
 }
 
 export function generateSessionCoverageData(): SessionCoverageData[] {
@@ -15,11 +16,14 @@ export function generateSessionCoverageData(): SessionCoverageData[] {
     // Captured replays is ~10% of total sessions
     const capturedReplays = Math.floor(totalSessions * (0.08 + Math.random() * 0.04)); // 8-12% variation
     
+    const quotaUsed = (capturedReplays / 2000000) * 100; // 2M quota
+    
     return {
       month,
       totalSessions,
       capturedReplays,
-      remainingSessions: totalSessions - capturedReplays
+      remainingSessions: totalSessions - capturedReplays,
+      quotaUsed: Math.round(quotaUsed * 10) / 10 // Round to 1 decimal
     };
   });
 }
