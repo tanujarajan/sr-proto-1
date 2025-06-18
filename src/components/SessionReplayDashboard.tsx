@@ -2,6 +2,7 @@ import { useState } from "react";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { SessionReplayTable } from "@/components/SessionReplayTable";
 import { FilterBar } from "@/components/FilterBar";
+import { SessionReplayCoverageTooltip } from "@/components/SessionReplayCoverageTooltip";
 import { SessionReplay } from "@/types/session-replay";
 
 interface SessionReplayDashboardProps {
@@ -34,7 +35,10 @@ export function SessionReplayDashboard({ onReplaySelect }: SessionReplayDashboar
                 <FilterBar />
               </div>
               
-              <SessionReplayTable 
+              {/* Session Replay Coverage Tooltip */}
+              <SessionReplayCoverageTooltip />
+              
+              <SessionReplayTable
                 showLiveReplays={showLiveReplays}
                 onReplaySelect={onReplaySelect}
                 onShowLiveReplaysChange={setShowLiveReplays}
