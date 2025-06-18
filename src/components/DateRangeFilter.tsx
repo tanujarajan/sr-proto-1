@@ -59,10 +59,14 @@ export function DateRangeFilter() {
         <div className="p-3">
           <div className="flex gap-2 mb-3">
             <Button
-              variant={activeTab === "start" ? "default" : "outline"}
+              variant="outline"
               size="sm"
               onClick={() => setActiveTab("start")}
-              className="text-xs"
+              className={`text-xs ${
+                activeTab === "start" 
+                  ? "bg-blue-600 text-white border-blue-600 hover:bg-blue-700 hover:text-white" 
+                  : "hover:text-white"
+              }`}
             >
               Start Date
             </Button>
@@ -72,8 +76,8 @@ export function DateRangeFilter() {
               onClick={() => setActiveTab("end")}
               className={`text-xs ${
                 activeTab === "end" 
-                  ? "bg-blue-600 text-white border-blue-600 hover:bg-blue-700" 
-                  : ""
+                  ? "bg-blue-600 text-white border-blue-600 hover:bg-blue-700 hover:text-white" 
+                  : "hover:text-white"
               }`}
             >
               End Date
@@ -85,6 +89,10 @@ export function DateRangeFilter() {
             onSelect={handleDateSelect}
             initialFocus
             className="pointer-events-auto"
+            classNames={{
+              day_selected: "bg-blue-600 text-white hover:bg-blue-700 hover:text-white focus:bg-blue-600 focus:text-white",
+              day: "hover:bg-blue-100 hover:text-blue-900"
+            }}
           />
         </div>
       </PopoverContent>
