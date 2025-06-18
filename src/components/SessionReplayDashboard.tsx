@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { SidebarTrigger } from "@/components/ui/sidebar";
-import { Switch } from "@/components/ui/switch";
 import { SessionReplayTable } from "@/components/SessionReplayTable";
 import { InterestingReplaysSection } from "@/components/InterestingReplaysSection";
 import { FilterBar } from "@/components/FilterBar";
@@ -16,18 +15,10 @@ export function SessionReplayDashboard({ onReplaySelect }: SessionReplayDashboar
   return (
     <div className="flex flex-col h-screen">
       {/* Header */}
-      <div className="flex items-center justify-between p-4 border-b border-border bg-background">
+      <div className="flex items-center p-4 border-b border-border bg-background">
         <div className="flex items-center gap-4">
           <SidebarTrigger />
           <h1 className="text-2xl font-semibold">Session Replay</h1>
-        </div>
-        <div className="flex items-center gap-2">
-          <span className="text-sm text-muted-foreground">Show Live Replays</span>
-          <Switch 
-            checked={showLiveReplays} 
-            onCheckedChange={setShowLiveReplays}
-            className="data-[state=checked]:bg-blue-600"
-          />
         </div>
       </div>
 
@@ -46,9 +37,10 @@ export function SessionReplayDashboard({ onReplaySelect }: SessionReplayDashboar
 
           {/* Session Replay Table */}
           <div className="flex-1 overflow-hidden">
-            <SessionReplayTable 
+           <SessionReplayTable 
               showLiveReplays={showLiveReplays}
               onReplaySelect={onReplaySelect}
+              onShowLiveReplaysChange={setShowLiveReplays}
             />
           </div>
         </div>
