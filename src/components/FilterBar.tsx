@@ -24,8 +24,8 @@ export function FilterBar() {
           onClick={() => setActiveTimePeriod(period.value)}
           className={`h-8 px-3 ${
             activeTimePeriod === period.value 
-              ? "bg-blue-600 text-white border-blue-600 hover:bg-blue-700" 
-              : ""
+              ? "bg-blue-600 text-white border-blue-600 hover:bg-blue-700 hover:text-white" 
+              : "hover:bg-blue-100 hover:text-blue-900"
           }`}
         >
           {period.label}
