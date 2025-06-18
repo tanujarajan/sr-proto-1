@@ -65,7 +65,7 @@ export function DateRangeFilter() {
               className={`text-xs ${
                 activeTab === "start" 
                   ? "bg-blue-600 text-white border-blue-600 hover:bg-blue-700 hover:text-white" 
-                  : "hover:text-white"
+                  : "hover:bg-blue-100 hover:text-blue-900"
               }`}
             >
               Start Date
@@ -77,7 +77,7 @@ export function DateRangeFilter() {
               className={`text-xs ${
                 activeTab === "end" 
                   ? "bg-blue-600 text-white border-blue-600 hover:bg-blue-700 hover:text-white" 
-                  : "hover:text-white"
+                  : "hover:bg-blue-100 hover:text-blue-900"
               }`}
             >
               End Date
