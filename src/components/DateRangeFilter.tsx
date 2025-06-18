@@ -67,10 +67,14 @@ export function DateRangeFilter() {
               Start Date
             </Button>
             <Button
-              variant={activeTab === "end" ? "default" : "outline"}
+              variant="outline"
               size="sm"
               onClick={() => setActiveTab("end")}
-              className="text-xs"
+              className={`text-xs ${
+                activeTab === "end" 
+                  ? "bg-blue-600 text-white border-blue-600 hover:bg-blue-700" 
+                  : ""
+              }`}
             >
               End Date
             </Button>
