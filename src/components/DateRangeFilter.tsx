@@ -90,8 +90,8 @@ export function DateRangeFilter() {
             initialFocus
             className="pointer-events-auto"
             classNames={{
-              day_selected: "bg-blue-600 text-white hover:bg-blue-700 hover:text-white focus:bg-blue-600 focus:text-white",
-              day: "hover:bg-blue-100 hover:text-blue-900"
+              day_selected: "bg-blue-600 text-white hover:bg-blue-600 hover:text-white focus:bg-blue-600 focus:text-white",
+              day: "h-9 w-9 p-0 font-normal aria-selected:opacity-100 hover:bg-blue-100 hover:text-blue-900 inline-flex items-center justify-center rounded-md"
             }}
           />
         </div>
