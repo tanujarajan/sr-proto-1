@@ -14,7 +14,7 @@ export function SessionReplayCoverageTooltip() {
 
   return (
     <TooltipProvider>
-      <div className="px-6 py-3">
+      <div className="px-6 py-3 flex justify-end">
         <Tooltip>
           <TooltipTrigger asChild>
             <button
