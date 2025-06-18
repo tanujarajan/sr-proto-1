@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { DateRangeFilter } from "@/components/DateRangeFilter";
 
 type TimePeriod = "1d" | "7d" | "30d";
 
@@ -14,6 +15,7 @@ export function FilterBar() {
 
   return (
     <div className="flex items-center gap-2">
+      <DateRangeFilter />
       {timePeriods.map((period) => (
         <Button
           key={period.value}
