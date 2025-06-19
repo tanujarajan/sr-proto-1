@@ -25,7 +25,7 @@ export function SessionReplayCoverageModal({ open, onClose }: SessionReplayCover
   return (
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent className="max-w-4xl">
-        <DialogHeader className="space-y-4 pb-2">
+        <DialogHeader className="space-y-4 pb-1">
           <DialogTitle className="text-lg font-semibold tracking-wide text-left text-muted-foreground">
             SESSION REPLAY COVERAGE
           </DialogTitle>
@@ -39,7 +39,7 @@ export function SessionReplayCoverageModal({ open, onClose }: SessionReplayCover
         </DialogHeader>
 
         {/* Description */}
-        <div className="space-y-4 text-sm text-muted-foreground leading-relaxed">
+        <div className="space-y-2 text-sm text-muted-foreground leading-relaxed">
           <p>
             <span className="font-semibold text-foreground">1M sessions captured</span> for replay this month out of <span className="font-semibold text-foreground">10 million total user sessions</span> across all platforms instrumented with Session Replay.
           </p>
