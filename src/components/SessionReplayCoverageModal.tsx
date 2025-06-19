@@ -18,7 +18,7 @@ export function SessionReplayCoverageModal({ open, onClose }: SessionReplayCover
     },
     remainingSessions: {
       label: "User Sessions", 
-      color: "hsl(142, 69%, 58%)", // Green
+      color: "#93bd31", // Green
     },
   };
 
@@ -77,43 +77,39 @@ export function SessionReplayCoverageModal({ open, onClose }: SessionReplayCover
                     <div className="rounded-lg border border-border/50 bg-background px-3 py-2 text-xs shadow-xl">
                       <div className="font-medium mb-2">{label}</div>
                       <div className="space-y-1">
-                        <div className="flex items-center justify-between gap-4">
-                          <div className="flex items-center gap-2">
-                            <div className="w-2 h-2 rounded-sm bg-[hsl(142,69%,58%)]"></div>
-                            <span className="text-muted-foreground">User Sessions</span>
-                          </div>
-                          <span className="font-mono font-medium">
-                            {Math.round(data.totalSessions / 1000000 * 10) / 10}M
-                          </span>
-                        </div>
-                        <div className="flex items-center justify-between gap-4">
-                          <div className="flex items-center gap-2">
-                            <div className="w-2 h-2 rounded-sm bg-[hsl(217,91%,60%)]"></div>
-                            <span className="text-muted-foreground">Replays Captured</span>
-                          </div>
-                          <span className="font-mono font-medium">
-                            {Math.round(data.capturedReplays / 1000000 * 10) / 10}M
-                          </span>
-                        </div>
-                        <div className="flex items-center justify-between gap-4">
-                          <div className="flex items-center gap-2">
-                            <div className="w-2 h-2 rounded-sm bg-muted"></div>
-                            <span className="text-muted-foreground">Replay Quota Used</span>
-                          </div>
-                          <span className="font-mono font-medium">{data.quotaUsed}%</span>
-                        </div>
+                         <div className="flex items-center justify-between gap-4">
+                           <div className="flex items-center gap-2">
+                             <div className="w-2 h-2 rounded-sm bg-[#93bd31]"></div>
+                             <span className="text-muted-foreground">User Sessions</span>
+                           </div>
+                           <span className="font-mono font-medium">
+                             {Math.round(data.totalSessions / 1000000 * 10) / 10}M
+                           </span>
+                         </div>
+                         <div className="flex items-center justify-between gap-4">
+                           <div className="flex items-center gap-2">
+                             <div className="w-2 h-2 rounded-sm bg-[hsl(217,91%,60%)]"></div>
+                             <span className="text-muted-foreground">Replays Captured</span>
+                           </div>
+                           <span className="font-mono font-medium">
+                             {Math.round(data.capturedReplays / 1000000 * 10) / 10}M ({Math.round((data.capturedReplays / data.totalSessions) * 100)}%)
+                           </span>
+                         </div>
+                         <div className="flex items-center justify-between gap-4">
+                           <div className="flex items-center gap-2">
+                             <div className="w-2 h-2 rounded-sm bg-muted"></div>
+                             <span className="text-muted-foreground">Replay Quota Used</span>
+                           </div>
+                           <span className="font-mono font-medium">
+                             {Math.round(data.capturedReplays / 1000000 * 10) / 10}M of 2M ({data.quotaUsed}%)
+                           </span>
+                         </div>
                       </div>
                     </div>
                   );
                 }}
               />
               <ChartLegend content={<ChartLegendContent />} />
-              <ReferenceLine 
-                y={2000000} 
-                stroke="hsl(var(--muted-foreground))" 
-                strokeDasharray="8 8"
-                strokeWidth={1}
-              />
               {/* Bottom segment: Replays Captured */}
               <Bar dataKey="capturedReplays" stackId="sessions" fill="var(--color-capturedReplays)" />
               {/* Top segment: User Sessions (remaining sessions) */}
@@ -121,6 +117,12 @@ export function SessionReplayCoverageModal({ open, onClose }: SessionReplayCover
                 dataKey="remainingSessions" 
                 stackId="sessions" 
                 fill="var(--color-remainingSessions)"
+              />
+              <ReferenceLine 
+                y={2000000} 
+                stroke="hsl(var(--muted-foreground))" 
+                strokeDasharray="8 8"
+                strokeWidth={1}
               />
             </BarChart>
           </ChartContainer>
