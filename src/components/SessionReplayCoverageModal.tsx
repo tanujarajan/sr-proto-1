@@ -25,7 +25,7 @@ export function SessionReplayCoverageModal({ open, onClose }: SessionReplayCover
   return (
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent className="max-w-4xl">
-        <DialogHeader className="space-y-4 pb-6">
+        <DialogHeader className="space-y-4 pb-2">
           <DialogTitle className="text-lg font-semibold tracking-wide text-left text-muted-foreground">
             SESSION REPLAY COVERAGE
           </DialogTitle>
