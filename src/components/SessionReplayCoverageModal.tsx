@@ -30,20 +30,28 @@ export function SessionReplayCoverageModal({ open, onClose }: SessionReplayCover
 
   const crossProjectConfig = {
     webProdReplays: {
-      label: "Web-Prod",
+      label: "Web-Prod Replays",
       color: "hsl(217, 91%, 60%)", // Blue
     },
     webDevReplays: {
-      label: "Web-Dev", 
+      label: "Web-Dev Replays", 
       color: "hsl(25, 95%, 53%)", // Orange
     },
     appProdReplays: {
-      label: "App-Prod",
+      label: "App-Prod Replays",
       color: "hsl(262, 83%, 58%)", // Purple
     },
-    remainingSessions: {
-      label: "User Sessions", 
+    webProdSessions: {
+      label: "Web-Prod Sessions",
       color: "#93bd31", // Green
+    },
+    webDevSessions: {
+      label: "Web-Dev Sessions",
+      color: "#7db928", // Lighter green
+    },
+    appProdSessions: {
+      label: "App-Prod Sessions",
+      color: "#a3c940", // Even lighter green
     },
   };
 
@@ -83,7 +91,7 @@ export function SessionReplayCoverageModal({ open, onClose }: SessionReplayCover
                 <span className="font-semibold text-foreground">Monthly replay quota: 2M.</span>
               </p>
               <p>
-                Use the chart below to understand how each project contributes to your overall replay quota usage over time.
+                Use the chart below to understand how each project contributes to your overall replay quota usage and session volume over time.
               </p>
             </>
           ) : (
@@ -147,16 +155,34 @@ export function SessionReplayCoverageModal({ open, onClose }: SessionReplayCover
                             <div className="flex items-center justify-between gap-4">
                               <div className="flex items-center gap-2">
                                 <div className="w-2 h-2 rounded-sm bg-[#93bd31]"></div>
-                                <span className="text-muted-foreground">User Sessions</span>
+                                <span className="text-muted-foreground">Web-Prod Sessions</span>
                               </div>
                               <span className="font-mono font-medium">
-                                {Math.round(data.totalSessions / 1000000 * 10) / 10}M
+                                {Math.round(data.webProdSessions / 1000000 * 10) / 10}M
+                              </span>
+                            </div>
+                            <div className="flex items-center justify-between gap-4">
+                              <div className="flex items-center gap-2">
+                                <div className="w-2 h-2 rounded-sm bg-[#7db928]"></div>
+                                <span className="text-muted-foreground">Web-Dev Sessions</span>
+                              </div>
+                              <span className="font-mono font-medium">
+                                {Math.round(data.webDevSessions / 1000000 * 10) / 10}M
+                              </span>
+                            </div>
+                            <div className="flex items-center justify-between gap-4">
+                              <div className="flex items-center gap-2">
+                                <div className="w-2 h-2 rounded-sm bg-[#a3c940]"></div>
+                                <span className="text-muted-foreground">App-Prod Sessions</span>
+                              </div>
+                              <span className="font-mono font-medium">
+                                {Math.round(data.appProdSessions / 1000000 * 10) / 10}M
                               </span>
                             </div>
                             <div className="flex items-center justify-between gap-4">
                               <div className="flex items-center gap-2">
                                 <div className="w-2 h-2 rounded-sm bg-[hsl(217,91%,60%)]"></div>
-                                <span className="text-muted-foreground">Web-Prod</span>
+                                <span className="text-muted-foreground">Web-Prod Replays</span>
                               </div>
                               <span className="font-mono font-medium">
                                 {Math.round(data.webProdReplays / 1000000 * 10) / 10}M
@@ -165,7 +191,7 @@ export function SessionReplayCoverageModal({ open, onClose }: SessionReplayCover
                             <div className="flex items-center justify-between gap-4">
                               <div className="flex items-center gap-2">
                                 <div className="w-2 h-2 rounded-sm bg-[hsl(25,95%,53%)]"></div>
-                                <span className="text-muted-foreground">Web-Dev</span>
+                                <span className="text-muted-foreground">Web-Dev Replays</span>
                               </div>
                               <span className="font-mono font-medium">
                                 {Math.round(data.webDevReplays / 1000000 * 10) / 10}M
@@ -174,7 +200,7 @@ export function SessionReplayCoverageModal({ open, onClose }: SessionReplayCover
                             <div className="flex items-center justify-between gap-4">
                               <div className="flex items-center gap-2">
                                 <div className="w-2 h-2 rounded-sm bg-[hsl(262,83%,58%)]"></div>
-                                <span className="text-muted-foreground">App-Prod</span>
+                                <span className="text-muted-foreground">App-Prod Replays</span>
                               </div>
                               <span className="font-mono font-medium">
                                 {Math.round(data.appProdReplays / 1000000 * 10) / 10}M
@@ -231,11 +257,13 @@ export function SessionReplayCoverageModal({ open, onClose }: SessionReplayCover
               {/* Conditional rendering based on view mode */}
               {isCrossProjectView ? (
                 <>
-                  {/* Cross-project view: Multiple project bars */}
+                  {/* Cross-project view: Multiple project bars for both sessions and replays */}
+                  <Bar dataKey="webProdSessions" stackId="sessions" fill="var(--color-webProdSessions)" />
+                  <Bar dataKey="webDevSessions" stackId="sessions" fill="var(--color-webDevSessions)" />
+                  <Bar dataKey="appProdSessions" stackId="sessions" fill="var(--color-appProdSessions)" />
                   <Bar dataKey="webProdReplays" stackId="sessions" fill="var(--color-webProdReplays)" />
                   <Bar dataKey="webDevReplays" stackId="sessions" fill="var(--color-webDevReplays)" />
                   <Bar dataKey="appProdReplays" stackId="sessions" fill="var(--color-appProdReplays)" />
-                  <Bar dataKey="remainingSessions" stackId="sessions" fill="var(--color-remainingSessions)" />
                 </>
               ) : (
                 <>
