@@ -9,7 +9,10 @@ export interface SessionCoverageData {
 
 export interface CrossProjectData {
   month: string;
-  totalSessions: number;
+  totalSessions: number; // Sum of all projects' sessions
+  webProdSessions: number;
+  webDevSessions: number;
+  appProdSessions: number;
   webProdReplays: number;
   webDevReplays: number;
   appProdReplays: number;
@@ -42,10 +45,22 @@ export function generateSessionCoverageData(): SessionCoverageData[] {
 
 export function generateCrossProjectData(): CrossProjectData[] {
   const months = ['Jan 2024', 'Feb 2024', 'Mar 2024', 'Apr 2024', 'May 2024', 'Jun 2024'];
+  const singleProjectData = generateSessionCoverageData();
   
-  return months.map(month => {
-    // Generate total sessions between 8M-12M
-    const totalSessions = Math.floor(Math.random() * 4000000) + 8000000;
+  return months.map((month, index) => {
+    // Get Web-Prod data from single project view to maintain consistency
+    const webProdData = singleProjectData[index];
+    const webProdSessions = webProdData.totalSessions;
+    const webProdReplays = webProdData.capturedReplays;
+    
+    // Generate Web-Dev sessions (3-5M)
+    const webDevSessions = Math.floor(Math.random() * 2000000) + 3000000; // 3M-5M
+    
+    // Generate App-Prod sessions (2-3M)
+    const appProdSessions = Math.floor(Math.random() * 1000000) + 2000000; // 2M-3M
+    
+    // Total sessions across all projects
+    const totalSessions = webProdSessions + webDevSessions + appProdSessions;
     
     // For March, set total replays to exactly 2M
     let totalReplays;
@@ -56,13 +71,9 @@ export function generateCrossProjectData(): CrossProjectData[] {
       totalReplays = Math.floor(Math.random() * 400000) + 1500000; // 1.5M-1.9M
     }
     
-    // Distribute replays across projects
-    // Web-Prod gets 45-55% of total replays
-    const webProdReplays = Math.floor(totalReplays * (0.45 + Math.random() * 0.1));
-    
-    // Web-Dev gets 25-35% of remaining replays
-    const remainingAfterProd = totalReplays - webProdReplays;
-    const webDevReplays = Math.floor(remainingAfterProd * (0.4 + Math.random() * 0.2));
+    // Web-Dev replays (25-35% of remaining replays after Web-Prod)
+    const remainingAfterWebProd = totalReplays - webProdReplays;
+    const webDevReplays = Math.floor(remainingAfterWebProd * (0.4 + Math.random() * 0.2));
     
     // App-Prod gets the rest
     const appProdReplays = totalReplays - webProdReplays - webDevReplays;
@@ -72,6 +83,9 @@ export function generateCrossProjectData(): CrossProjectData[] {
     return {
       month,
       totalSessions,
+      webProdSessions,
+      webDevSessions,
+      appProdSessions,
       webProdReplays,
       webDevReplays,
       appProdReplays,
