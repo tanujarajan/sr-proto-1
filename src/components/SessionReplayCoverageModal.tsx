@@ -1,3 +1,4 @@
+
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { ChartContainer, ChartTooltip, ChartTooltipContent, ChartLegend, ChartLegendContent } from "@/components/ui/chart";
 import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, ReferenceLine } from "recharts";
@@ -45,6 +46,9 @@ export function SessionReplayCoverageModal({ open, onClose }: SessionReplayCover
           </p>
           <p>
             <span className="font-semibold text-foreground">Monthly replay quota: 2M.</span>
+          </p>
+          <p>
+            <span className="font-semibold text-foreground">Project sample rate: 20%.</span>
           </p>
           <p>
             Use the chart below to understand how much of overall user session activity is being captured for replay over time.
