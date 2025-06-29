@@ -41,7 +41,7 @@ export function SessionReplayCoverageModal({ open, onClose }: SessionReplayCover
         {/* Description */}
         <div className="space-y-2 text-sm text-muted-foreground leading-relaxed">
           <p>
-            <span className="font-semibold text-foreground">1M sessions captured</span> for replay this month out of <span className="font-semibold text-foreground">10 million total user sessions</span> across all platforms instrumented with Session Replay.
+            <span className="font-semibold text-foreground">1M sessions captured</span> for replay this month out of <span className="font-semibold text-foreground">10 million total user sessions for current project</span>.
           </p>
           <p>
             <span className="font-semibold text-foreground">Monthly replay quota: 2M.</span>
