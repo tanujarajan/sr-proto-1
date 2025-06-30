@@ -59,7 +59,7 @@ export function SessionReplayCoverageTooltipV2() {
                     {coveragePercentage.toFixed(0)}%
                   </span>
                 </div>
-                <Progress value={coveragePercentage} className="h-2" />
+                <Progress value={coveragePercentage} color="#3879fe" className="h-2" />
                 <div className="flex justify-between text-xs text-muted-foreground">
                   <span>{(replaysCaptured / 1000000).toFixed(1)}M captured</span>
                   <span>{(totalSessions / 1000000).toFixed(0)}M total sessions</span>
@@ -76,7 +76,7 @@ export function SessionReplayCoverageTooltipV2() {
                     {quotaUsagePercentage.toFixed(0)}%
                   </span>
                 </div>
-                <Progress value={quotaUsagePercentage} className="h-2" />
+                <Progress value={quotaUsagePercentage} color="#3879fe" className="h-2" />
                 <div className="flex justify-between text-xs text-muted-foreground">
                   <span>{(replaysCaptured / 1000000).toFixed(1)}M used</span>
                   <span>{(monthlyQuota / 1000000).toFixed(0)}M quota</span>
