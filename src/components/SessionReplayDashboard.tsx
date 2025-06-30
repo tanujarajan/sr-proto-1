@@ -1,15 +1,18 @@
+
 import { useState } from "react";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { SessionReplayTable } from "@/components/SessionReplayTable";
 import { FilterBar } from "@/components/FilterBar";
 import { SessionReplayCoverageTooltip } from "@/components/SessionReplayCoverageTooltip";
+import { SessionReplayCoverageTooltipV2 } from "@/components/SessionReplayCoverageTooltipV2";
 import { SessionReplay } from "@/types/session-replay";
 
 interface SessionReplayDashboardProps {
   onReplaySelect: (replay: SessionReplay) => void;
+  useV2Tooltip?: boolean;
 }
 
-export function SessionReplayDashboard({ onReplaySelect }: SessionReplayDashboardProps) {
+export function SessionReplayDashboard({ onReplaySelect, useV2Tooltip = false }: SessionReplayDashboardProps) {
   const [showLiveReplays, setShowLiveReplays] = useState(true);
   
   console.log("SessionReplayDashboard rendered - toggle should NOT be in header");
@@ -35,8 +38,8 @@ export function SessionReplayDashboard({ onReplaySelect }: SessionReplayDashboar
                 <FilterBar />
               </div>
               
-              {/* Session Replay Coverage Tooltip */}
-              <SessionReplayCoverageTooltip />
+              {/* Session Replay Coverage Tooltip - V1 or V2 */}
+              {useV2Tooltip ? <SessionReplayCoverageTooltipV2 /> : <SessionReplayCoverageTooltip />}
               
               <SessionReplayTable
                 showLiveReplays={showLiveReplays}
