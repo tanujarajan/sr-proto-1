@@ -46,7 +46,7 @@ export function SessionReplayCoverageTooltipV2() {
                   Session Replay Coverage
                 </h3>
                 <p className="text-xs text-muted-foreground">
-                  Current month overview
+                  Jun 1, 2025 - Jun 30, 2025
                 </p>
               </div>
 
