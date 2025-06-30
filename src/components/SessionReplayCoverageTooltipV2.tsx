@@ -84,23 +84,11 @@ export function SessionReplayCoverageTooltipV2() {
                 </div>
               </div>
 
-              {/* Key Stats - More compact layout */}
-              <div className="grid grid-cols-2 gap-x-4 gap-y-1 pt-2 border-t border-border text-xs">
+              {/* Project Sample Rate - Simplified */}
+              <div className="pt-2 border-t border-border text-xs">
                 <div className="flex justify-between">
-                  <span className="text-muted-foreground">Sample rate:</span>
+                  <span className="text-muted-foreground">Project sample rate:</span>
                   <span className="font-medium text-foreground">{projectSampleRate}%</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">Replays:</span>
-                  <span className="font-medium text-foreground">{(replaysCaptured / 1000000).toFixed(1)}M</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">Sessions:</span>
-                  <span className="font-medium text-foreground">{(totalSessions / 1000000).toFixed(0)}M</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">Quota:</span>
-                  <span className="font-medium text-foreground">{(monthlyQuota / 1000000).toFixed(0)}M</span>
                 </div>
               </div>
 
