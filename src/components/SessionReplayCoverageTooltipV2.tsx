@@ -37,8 +37,8 @@ export function SessionReplayCoverageTooltipV2() {
               <Info className="w-4 h-4" />
             </button>
           </TooltipTrigger>
-          <TooltipContent className="max-w-sm p-4">
-            <div className="space-y-4">
+          <TooltipContent className="w-80 p-4">
+            <div className="space-y-3">
               {/* Header */}
               <div>
                 <h3 className="text-sm font-semibold text-foreground mb-1">
@@ -66,9 +66,6 @@ export function SessionReplayCoverageTooltipV2() {
                 </div>
               </div>
 
-              {/* Divider */}
-              <div className="border-t border-border"></div>
-
               {/* Usage Metrics */}
               <div className="space-y-2">
                 <div className="flex justify-between items-center">
@@ -86,17 +83,17 @@ export function SessionReplayCoverageTooltipV2() {
                 </div>
               </div>
 
-              {/* Key Stats */}
-              <div className="space-y-1 pt-2 border-t border-border">
-                <div className="flex justify-between text-xs">
-                  <span className="text-muted-foreground">Replays this month:</span>
+              {/* Key Stats - More compact layout */}
+              <div className="grid grid-cols-2 gap-x-4 gap-y-1 pt-2 border-t border-border text-xs">
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">Replays:</span>
                   <span className="font-medium text-foreground">{(replaysCaptured / 1000000).toFixed(1)}M</span>
                 </div>
-                <div className="flex justify-between text-xs">
-                  <span className="text-muted-foreground">Total sessions:</span>
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">Sessions:</span>
                   <span className="font-medium text-foreground">{(totalSessions / 1000000).toFixed(0)}M</span>
                 </div>
-                <div className="flex justify-between text-xs">
+                <div className="flex justify-between col-span-2">
                   <span className="text-muted-foreground">Monthly quota:</span>
                   <span className="font-medium text-foreground">{(monthlyQuota / 1000000).toFixed(0)}M</span>
                 </div>
