@@ -63,7 +63,7 @@ export function SessionReplayCoverageTooltipV2() {
                 <Progress value={coveragePercentage} color="#3879fe" className="h-2" />
                 <div className="flex justify-between text-xs text-muted-foreground">
                   <span>{(replaysCaptured / 1000000).toFixed(1)}M captured</span>
-                  <span>{(totalSessions / 1000000).toFixed(0)}M total sessions</span>
+                  <span>{(totalSessions / 1000000).toFixed(0)}M sessions this month</span>
                 </div>
               </div>
 
