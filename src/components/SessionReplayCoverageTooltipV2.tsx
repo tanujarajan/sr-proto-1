@@ -22,7 +22,7 @@ export function SessionReplayCoverageTooltipV2() {
         <Tooltip>
           <TooltipTrigger asChild>
             <button onClick={handleClick} className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
-              <span>Session Replay Sample Rate: 10%</span>
+              <span>Session Replay Sample Rate: {projectSampleRate}%</span>
               <Info className="w-4 h-4" />
             </button>
           </TooltipTrigger>
