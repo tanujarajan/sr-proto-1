@@ -1,18 +1,10 @@
-
 import { useState } from "react";
 import { Info } from "lucide-react";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Progress } from "@/components/ui/progress";
 import { SessionReplayCoverageModal } from "@/components/SessionReplayCoverageModal";
-
 export function SessionReplayCoverageTooltipV2() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
   const handleClick = () => {
     setIsModalOpen(true);
   };
@@ -22,19 +14,15 @@ export function SessionReplayCoverageTooltipV2() {
   const totalSessions = 10000000; // 10M
   const monthlyQuota = 2000000; // 2M
   const projectSampleRate = 20; // 20%
-  const coveragePercentage = (replaysCaptured / totalSessions) * 100; // 10%
-  const quotaUsagePercentage = (replaysCaptured / monthlyQuota) * 100; // 50%
+  const coveragePercentage = replaysCaptured / totalSessions * 100; // 10%
+  const quotaUsagePercentage = replaysCaptured / monthlyQuota * 100; // 50%
 
-  return (
-    <TooltipProvider>
+  return <TooltipProvider>
       <div className="px-6 py-3 flex justify-end">
         <Tooltip>
           <TooltipTrigger asChild>
-            <button
-              onClick={handleClick}
-              className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
-            >
-              <span>Session Replay Coverage: 10%</span>
+            <button onClick={handleClick} className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
+              <span>Session Replay Sample Rate: 10%</span>
               <Info className="w-4 h-4" />
             </button>
           </TooltipTrigger>
@@ -100,10 +88,6 @@ export function SessionReplayCoverageTooltipV2() {
         </Tooltip>
       </div>
       
-      <SessionReplayCoverageModal 
-        open={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-      />
-    </TooltipProvider>
-  );
+      <SessionReplayCoverageModal open={isModalOpen} onClose={() => setIsModalOpen(false)} />
+    </TooltipProvider>;
 }
