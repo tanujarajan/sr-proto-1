@@ -30,9 +30,7 @@ export function SessionReplayCoverageTooltipV2() {
             <div className="space-y-3">
               {/* Header */}
               <div>
-                <h3 className="text-sm font-semibold text-foreground mb-1">
-                  Session Replay Coverage
-                </h3>
+                <h3 className="text-sm font-semibold text-foreground mb-1">Session Replay Usage</h3>
                 <p className="text-xs text-muted-foreground">
                   Jun 1, 2025 - Jun 30, 2025
                 </p>
